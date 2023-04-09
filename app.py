@@ -1,22 +1,31 @@
-import tkinter as tk
-from tkinter import ttk
+import os
+import customtkinter as ctk
+from settings import *
 
-# Ventana
-window = tk.Tk()
-window.title('Demo')
-window.geometry('300x150')
+# Cargar el directorio en que se encuentra la aplicacion
+path_actual = os.path.dirname(os.path.realpath(__file__))
 
-# Titulo
-title_label = ttk.Label(master=window, text='Comienzo interfaz Photopetra', font='Calibri 12 bold')
-title_label.pack()
+class App(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        # 1. Configurar la apariencia a oscura o clara en función del tema del sistema
+        ctk.set_appearance_mode('System')
+        # 2. Obtener el tamaño de la ventana de inicio de la settings.py y desactivar el cambio de tamaño de la ventana
+        self.geometry(f'{APP_SIZE[0]}x{APP_SIZE[1]}')
+        self.resizable(width= False, height= False)
+        
+        self.navigation_frame = ctk.CTkFrame(master= self, corner_radius=0.1)
+        self.navigation_frame.pack(pady= 20, padx= 60, fill='both', expand=True)
+        
+        
+        
+        self.mainloop()
+    
+class Boton(ctk.CTkButton):
+    def __init__(self, parent, text, image):
+        super().__init__(
+            master= parent,
+            text= text)
 
-#Input
-input_frame = ttk.Frame(master=window)
-entry = ttk.Entry(master=input_frame)
-button = ttk.Button(master=input_frame, text='Enviar')
-entry.pack()
-button.pack()
-input_frame.pack()
-
-# Run
-window.mainloop()
+if __name__ == '__main__':
+    App()
