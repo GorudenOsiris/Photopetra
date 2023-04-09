@@ -14,7 +14,7 @@ class App(ctk.CTk):
         self.geometry(f'{APP_SIZE[0]}x{APP_SIZE[1]}')
         self.resizable(width= False, height= False)
         
-        self.navigation_frame = ctk.CTkFrame(master= self, corner_radius=0.1)
+        self.navigation_frame = ctk.CTkFrame(master= self, width= 140,corner_radius=0.1)
         self.navigation_frame.pack(pady= 20, padx= 60, fill='both', expand=True)
         
         
