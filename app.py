@@ -40,18 +40,23 @@ class SerialApp:
         self.data_var2 = tk.StringVar()
         self.data_var3 = tk.StringVar()
         
-        ctk.CTkLabel(self.data_frame, text="Dato 1:").grid(row=0, column=0, padx=10, pady=5)
+        ctk.CTkLabel(self.data_frame, text= "Radio:").grid(row=0, column=0, padx=10, pady=5)
         ctk.CTkEntry(self.data_frame, textvariable=self.data_var1).grid(row=0, column=1, padx=10, pady=5)
         
-        ctk.CTkLabel(self.data_frame, text="Dato 2:").grid(row=1, column=0, padx=10, pady=5)
+        ctk.CTkLabel(self.data_frame, text= "Longitud:").grid(row=1, column=0, padx=10, pady=5)
         ctk.CTkEntry(self.data_frame, textvariable=self.data_var2).grid(row=1, column=1, padx=10, pady=5)
         
-        ctk.CTkLabel(self.data_frame, text="Dato 3:").grid(row=2, column=0, padx=10, pady=5)
+        ctk.CTkLabel(self.data_frame, text= "Dato 3:").grid(row=2, column=0, padx=10, pady=5)
         ctk.CTkEntry(self.data_frame, textvariable=self.data_var3).grid(row=2, column=1, padx=10, pady=5)
+        
+        # Botones para tipo de luz
+        self.light_type = ctk.StringVar()
+        ctk.CTkRadioButton(self.data_frame, text= "Luz Blanca", variable= self.light_type, value="Blanca").grid(row=3, column= 0, padx=10, pady=5)
+        ctk.CTkRadioButton(self.data_frame, text= "Luz UV", variable= self.light_type, value="UV").grid(row=3, column= 1, padx=10, pady=5)
 
         # Actualizar lista de puertos al inicio
         self.update_ports()
-
+    
     def update_ports(self):
         ports = [port.device for port in serial.tools.list_ports.comports()]
         self.dropdown._values = ports
@@ -86,9 +91,24 @@ class SerialApp:
         else:
             self.disconnect_from_serial()
             
+    def check_connection_state(self):
+        if self.serial_port:
+            if not self.serial_port.is_open():
+                self.show_error("La conexión se ha perdido.")
+                self.disconnect_from_serial()
+        self.master.after(5000, self.check_connection_state)
+            
     def show_error(self, message):
             tk.messagebox.showerror("Error", message)
+            
+def on_closing():
+    if app.serial_port:
+        app.serial_port.close()
+    master.destroy()
+            
+            
 if __name__ == "__main__":
     master = ctk.CTk()
     app = SerialApp(master)
+    master.protocol("WM_DELETE_WINDOW", on_closing)
     master.mainloop()
