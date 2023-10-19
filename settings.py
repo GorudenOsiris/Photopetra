@@ -1,5 +1,5 @@
 # tamaño
-APP_SIZE = (1280, 720)
+APP_SIZE = (700, 450)
 
 # texto
 FONT = 'Helvetica'
@@ -11,4 +11,5 @@ STYLING = {
     'corner-radius': 0
 }
 
+DARK_BG_COLOR = "#2b2b2b"
 
