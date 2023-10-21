@@ -11,5 +11,10 @@ STYLING = {
     'corner-radius': 0
 }
 
-DARK_BG_COLOR = "#2b2b2b"
+# colores
+START_FG_COLOR = ("#4caf50","#32a852")
+STOP_FG_COLOR = ("#f44336","#a83232")
 
+# comunicacion serial
+BAUDRATE = 9600
+TIMEOUT = 1
