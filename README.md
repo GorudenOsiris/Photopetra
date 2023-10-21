@@ -1,24 +1,41 @@
-#Interfaz de Puerto Serial
-Esta GUI (Interfaz Gráfica de Usuario) se diseñó para establecer comunicación serial con dispositivos externos, proporcionando una forma intuitiva y amigable de interactuar con ellos.
+# Interfaz de Puerto Serial
 
-Características
-1. Conexión Serial
+Una interfaz gráfica de usuario (GUI) diseñada para interactuar con dispositivos a través del puerto serial.
 
-Lista dinámica de puertos disponibles, con la capacidad de actualizar automáticamente.
-Botón de conexión que permite conectar y desconectar del puerto seleccionado.
-Comprobación automática del estado de la conexión cada 5 segundos, desconectando y notificando al usuario si se pierde la conexión.
-Entrada de Datos
+## Funcionalidades Principales
 
-Tres entradas para datos numéricos, con validaciones para garantizar que se ingresen valores válidos.
-Seleccionador de tipo de luz con opciones para "Luz Blanca" y "Luz UV".
-Botón START para enviar los datos procesados al dispositivo.
-Botón STOP para enviar una señal de parada al dispositivo.
-Gestión de Errores
+1. **Conexión Serial:**
+   - Visualización de puertos seriales disponibles en el sistema.
+   - Botón para actualizar la lista de puertos disponibles.
+   - Botón para conectar y desconectar el puerto serial seleccionado.
+   - Verificación automática del estado de la conexión cada 5 segundos.
 
-Mensajes de error claros y descriptivos que informan al usuario sobre problemas específicos, ya sea con la entrada de datos o con la conexión serial.
-Diseño de Interfaz
+2. **Entrada de Datos:**
+   - Entradas para tres valores numéricos (Radio, Longitud, Dato 3).
+   - Selección del tipo de luz: Blanca o UV a través de RadioButtons.
+   - Botón START para enviar datos procesados al dispositivo.
+   - Botón STOP para enviar una señal de parada al dispositivo.
 
-Utiliza customtkinter para mejorar la estética de la interfaz y proporcionar un aspecto más moderno y pulido.
-Pendientes
-Ajustar el formato de envío de datos según especificaciones adicionales.
-Integrar fórmulas o cálculos específicos para procesar los datos antes de enviarlos.
+## Uso
+
+1. **Conectar al Puerto Serial:**
+   - Selecciona un puerto de la lista desplegable.
+   - Haz clic en el botón "Conectar". Una vez conectado, el botón cambiará a "Desconectar" para permitir la desconexión.
+
+2. **Enviar Datos:**
+   - Ingresa los valores deseados en los campos de entrada.
+   - Selecciona el tipo de luz.
+   - Haz clic en "START" para enviar los datos. Si quieres enviar una señal de parada, haz clic en "STOP".
+
+## Dependencias
+
+- `tkinter`: para la creación de la GUI.
+- `customtkinter`: para elementos personalizados de tkinter.
+- `serial`: para la comunicación a través del puerto serial.
+
+## Futuras Mejoras
+
+- Añadir funcionalidades de logging para registrar eventos y acciones realizadas.
+- Mejorar el proceso de envío de datos con formatos más avanzados.
+- Integrar la capacidad de recibir datos y visualizarlos en la GUI.
+
